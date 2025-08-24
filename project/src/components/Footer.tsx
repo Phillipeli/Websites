@@ -1,145 +1,141 @@
 import React from 'react';
-import { Zap } from 'lucide-react';
-import NAP from './NAP';
+import { Link } from 'react-router-dom';
+import { Calendar, Mail, Phone, MapPin, Linkedin } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
+const Footer: React.FC = () => {
+  const { t } = useLanguage();
+
+  const openCookieSettings = () => {
+    // Dispatch a custom event to open cookie settings
+    window.dispatchEvent(new CustomEvent('openCookieSettings'));
+  };
 
   return (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="container mx-auto px-6">
+    <footer className="bg-gray-900 border-t border-gray-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden">
-                <img 
-                  src="/leadstrom-logo-dark.png" 
-                  alt="Leadstrøm Logo" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <span className="text-2xl font-bold">Leadstrøm</span>
+          {/* Company Info */}
+          <div className="col-span-1 md:col-span-2">
+            <div className="flex items-center space-x-2 mb-4">
+              <Calendar className="h-8 w-8 text-emerald-500" />
+              <span className="text-xl font-bold text-white">Lai Solutions</span>
             </div>
-            <div className="mb-4">
-              <NAP variant="footer" showIcons={false} />
-            </div>
-            <p className="text-sm text-gray-500">
-              © {currentYear} Leadstrøm. Alle rettigheder forbeholdes.
+            <p className="text-gray-300 mb-4 leading-relaxed">
+              {t('footer.description')}
             </p>
+            <div className="space-y-2">
+              <div className="flex items-center text-gray-300">
+                <Mail className="h-4 w-4 mr-2 text-emerald-400" />
+                <a href="mailto:bastian@laisolutions.dk" className="hover:text-emerald-400 transition-colors">
+                  bastian@laisolutions.dk
+                </a>
+              </div>
+              <div className="flex items-center text-gray-300">
+                <Phone className="h-4 w-4 mr-2 text-emerald-400" />
+                <a href="tel:+4581731500" className="hover:text-emerald-400 transition-colors">
+                  +45 81 73 15 00
+                </a>
+              </div>
+              <div className="flex items-center text-gray-300">
+                <Linkedin className="h-4 w-4 mr-2 text-emerald-400" />
+                <a 
+                  href="https://www.linkedin.com/in/bastian-hansen-b012a1241/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-emerald-400 transition-colors"
+                >
+                  Bastian Hansen
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2 text-gray-400">
+            <h3 className="text-white font-bold mb-4">{t('footer.services')}</h3>
+            <ul className="space-y-2">
               <li>
-                <button 
-                  onClick={() => window.location.href = '/services#websites'}
-                  className="hover:text-white transition-colors duration-300"
-                >
-                  Hjemmesider
-                </button>
+                <Link to="/ai-agenter" className="text-gray-300 hover:text-emerald-400 transition-colors">
+                  {t('header.aiAgents')}
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => window.location.href = '/services#ai-agents'}
-                  className="hover:text-white transition-colors duration-300"
-                >
-                  AI Chat-agenter
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => window.location.href = '/services#ai-voice-agents'}
-                  className="hover:text-white transition-colors duration-300"
-                >
-                  AI Voice Agenter
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => window.location.href = '/services'}
-                  className="hover:text-white transition-colors duration-300"
-                >
-                  Booking systemer
-                </button>
+                <Link to="/automatiseret-leadgenerering" className="text-gray-300 hover:text-emerald-400 transition-colors">
+                  {t('header.leadGeneration')}
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Virksomhed</h3>
-            <ul className="space-y-2 text-gray-400">
+            <h3 className="text-white font-bold mb-4">{t('footer.quickLinks')}</h3>
+            <ul className="space-y-2">
               <li>
-                <button 
-                  onClick={() => window.location.href = '/om-os'}
-                  className="hover:text-white transition-colors duration-300"
-                >
-                  Om os
-                </button>
+                <Link to="/" className="text-gray-300 hover:text-emerald-400 transition-colors">
+                  {t('header.home')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/om-os" className="text-gray-300 hover:text-emerald-400 transition-colors">
+                  {t('header.about')}
+                </Link>
               </li>
               <li>
                 <button 
-                  onClick={() => window.location.href = '/faq'}
-                  className="hover:text-white transition-colors duration-300"
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="text-gray-300 hover:text-emerald-400 transition-colors text-left"
                 >
-                  FAQ
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => window.location.href = '/kontakt'}
-                  className="hover:text-white transition-colors duration-300"
-                >
-                  Kontakt
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => window.location.href = '/privatlivspolitik'}
-                  className="hover:text-white transition-colors duration-300"
-                >
-                  Privatlivspolitik
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => window.location.href = '/handelsbetingelser'}
-                  className="hover:text-white transition-colors duration-300"
-                >
-                  Handelsbetingelser
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => {
-                    localStorage.removeItem('cookieConsent');
-                    localStorage.removeItem('cookiePreferences');
-                    window.location.reload();
-                  }}
-                  className="hover:text-white transition-colors duration-300"
-                >
-                  Cookie-indstillinger
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => window.location.href = '/ai-transparens'}
-                  className="hover:text-white transition-colors duration-300"
-                >
-                  AI Transparens
+                  {t('header.contact')}
                 </button>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400 text-sm">
-            Lavet i Danmark
-          </p>
+        {/* Legal Links */}
+        <div className="border-t border-gray-800 mt-8 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="flex flex-wrap justify-center md:justify-start space-x-6">
+              <Link to="/handelsbetingelser" className="text-gray-400 hover:text-emerald-400 transition-colors text-sm">
+                {t('footer.termsOfService')}
+              </Link>
+              <Link to="/privatlivspolitik" className="text-gray-400 hover:text-emerald-400 transition-colors text-sm">
+                {t('footer.privacyPolicy')}
+              </Link>
+              <Link to="/cookies" className="text-gray-400 hover:text-emerald-400 transition-colors text-sm">
+                {t('footer.cookiePolicy')}
+              </Link>
+              <button 
+                onClick={openCookieSettings}
+                className="text-gray-400 hover:text-emerald-400 transition-colors text-sm"
+              >
+                {t('footer.cookieSettings')}
+              </button>
+            </div>
+            <div className="text-gray-400 text-sm">
+              © {new Date().getFullYear()} Lai Solutions. {t('footer.allRightsReserved')}
+            </div>
+          </div>
+        </div>
+
+        {/* Company Details */}
+        <div className="border-t border-gray-800 mt-4 pt-4">
+          <div className="text-center text-gray-500 text-xs space-y-1">
+            <p>Lai Solutions | Bastian Hansen</p>
+            <p>
+              Designet af{' '}
+              <a 
+                href="https://leadstrøm.dk" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-emerald-400 hover:text-emerald-300 transition-colors duration-200 underline"
+              >
+                Leadstrøm.dk
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
