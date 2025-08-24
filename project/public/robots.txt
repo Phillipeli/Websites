@@ -1,0 +1,8 @@
+@@ .. @@
+ User-agent: *
+ Allow: /
+ 
++# Image sitemap
++Sitemap: https://leadstrom.dk/image-sitemap.xml
++
+ Sitemap: https://leadstrom.dk/sitemap.xml
