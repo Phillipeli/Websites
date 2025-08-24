@@ -13,7 +13,7 @@ const About: React.FC = () => {
             </h2>
             
             <p className="text-lg text-gray-300 leading-relaxed mb-6">
-              Lai Solutions er founded af <strong>Bastian Hansen</strong> som har siddet som sælger de sidste mange år. 
+              Lai Solutions er founded af <strong>Bastian Hansen</strong> som har siddet som sælger de sidste mange årtier. 
               Virksomheden er startet for at hjælpe SMV'er med at få et kontinuerligt flow af kunder i 
               forretningen uden at man som virksomhedsejer skal bruge flere timer om dagen på at skaffe ny forretning.
             </p>
