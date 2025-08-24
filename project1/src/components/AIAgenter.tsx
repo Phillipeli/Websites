@@ -1,4 +1,4 @@
-import React from 'react';
+gimport React from 'react';
 import { Bot, Clock, Users, CheckCircle, ArrowRight } from 'lucide-react';
 
 const AIAgenter: React.FC = () => {
@@ -13,7 +13,7 @@ const AIAgenter: React.FC = () => {
             AI Agenter
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Intelligente AI-assistenter der automatisk håndterer kundeinteraktioner, 
+            Intelligente AI-assistenter der automatisk håndterer kundeinteraktionerne, 
             kvalificerer leads og booker møder 24/7
           </p>
         </div>
